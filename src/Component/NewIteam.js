@@ -1,21 +1,71 @@
 import React, { Component } from "react";
 
 export class NewIteam extends Component {
+  articles = [
+    {
+      source: { id: "bbc-sport", name: "BBC Sport" },
+      author: null,
+      title: "Bowler takes six wickets in six balls to win match",
+      description:
+        "Australian club cricketer Gareth Morgan takes six wickets in the final six balls of a match to seal a dramatic victory.",
+      url: "http://www.bbc.co.uk/sport/cricket/67401054",
+      urlToImage:
+        "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/1A18/production/_131708660_gettyimages-490665558.jpg",
+      publishedAt: "2023-11-14T08:37:19.9324655Z",
+      content:
+        "Surfers Paradise were 174-4 chasing 179 going into the final over before the bowling heroics of Mudgeeraba captain Gareth Morgan (centre - holding the ball)\r\nIt is a cricketing miracle that could sit… [+2399 chars]",
+    },
+    {
+      source: { id: "espn-cric-info", name: "ESPN Cric Info" },
+      author: null,
+      title:
+        "PCB hands Umar Akmal three-year ban from all cricket | ESPNcricinfo.com",
+      description:
+        "Penalty after the batsman pleaded guilty to not reporting corrupt approaches | ESPNcricinfo.com",
+      url: "http://www.espncricinfo.com/story/_/id/29103103/pcb-hands-umar-akmal-three-year-ban-all-cricket",
+      urlToImage:
+        "https://a4.espncdn.com/combiner/i?img=%2Fi%2Fcricket%2Fcricinfo%2F1099495_800x450.jpg",
+      publishedAt: "2020-04-27T11:41:47Z",
+      content:
+        "Umar Akmal's troubled cricket career has hit its biggest roadblock yet, with the PCB handing him a ban from all representative cricket for three years after he pleaded guilty of failing to report det… [+1506 chars]",
+    },
+    {
+      source: { id: "espn-cric-info", name: "ESPN Cric Info" },
+      author: null,
+      title:
+        "What we learned from watching the 1992 World Cup final in full again | ESPNcricinfo.com",
+      description:
+        "Wides, lbw calls, swing - plenty of things were different in white-ball cricket back then | ESPNcricinfo.com",
+      url: "http://www.espncricinfo.com/story/_/id/28970907/learned-watching-1992-world-cup-final-full-again",
+      urlToImage:
+        "https://a4.espncdn.com/combiner/i?img=%2Fi%2Fcricket%2Fcricinfo%2F1219926_1296x729.jpg",
+      publishedAt: "2020-03-30T15:26:05Z",
+      content:
+        "Last week, we at ESPNcricinfo did something we have been thinking of doing for eight years now: pretend-live ball-by-ball commentary for a classic cricket match. We knew the result, yes, but we tried… [+6823 chars]",
+    },
+  ];
+  constructor() {
+    super();
+    // declaring state in class based react compoents
+    this.state = {
+        articles: this.articles
+    };
+  }
+
   render() {
-    let { title, description } = this.props;
+    // props in class based react component
+    let { title, description, imgURL } = this.props;
     return (
-      <div className="card" style={{ width: "18rem" }}>
-        <img
-          src="https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/1A18/production/_131708660_gettyimages-490665558.jpg"
-          className="card-img-top"
-          alt="..."
-        />
-        <div className="card-body">
-          <h5 className="card-title">{title}</h5>
-          <p className="card-text">{description}</p>
-          <a href="/newdetails" className="btn btn-primary">
-            Go somewhere
-          </a>
+      <div className="my-3">
+        <div className="card" style={{ width: "18rem" }}>
+          <img src={imgURL} className="card-img-top" alt="..." />
+          <div className="card-body">
+            <h5 className="card-title">{title}</h5>
+            <p className="card-text">{description}</p>
+            <a href="/newdetails" className="btn btn-primary">
+              Read More
+            </a>
+          </div>
         </div>
       </div>
     );
