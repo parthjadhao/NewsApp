@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NewIteam from "./NewIteam";
+import Spinner from "./Spinner";
 
 export class News extends Component {
   constructor() {
@@ -12,39 +13,52 @@ export class News extends Component {
   }
 
   async componentDidMount() {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=dcfd93b5e575418a906ed05bdffd2177&page=1pageSize=20`;
+    let url = `https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=dcfd93b5e575418a906ed05bdffd2177&page=1&pageSize=${this.props.pageSize}`;
+    this.setState({
+      loading: true,
+    });
     let data = await fetch(url);
     let parseData = await data.json();
     this.setState({
       articles: parseData.articles,
+      totalResults: parseData.totalResults,
+      loading: false,
     });
-    console.log(this.state.articles);
   }
 
   handlePrevClick = async () => {
-    console.log("previous");
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=dcfd93b5e575418a906ed05bdffd2177&page=${
+    let url = `https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=dcfd93b5e575418a906ed05bdffd2177&page=${
       this.state.page - 1
-    }&pageSize=20`;
+    }&pageSize=${this.props.pageSize}`;
+    this.setState({
+      loading: true,
+    });
     let data = await fetch(url);
     let parseData = await data.json();
     this.setState({
-      page: this.page - 1,
+      page: this.state.page - 1,
       articles: parseData.articles,
+      loading: false,
     });
   };
   handleNextClick = async () => {
-    console.log("next");
-    if (this.state.page + 1 > Math.ceil(this.state.totalResult / 20)) {
+    if (
+      this.state.page + 1 >
+      Math.ceil(this.state.totalResults / this.props.pageSize)
+    ) {
     } else {
-      let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=dcfd93b5e575418a906ed05bdffd2177&page=${
+      let url = `https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=dcfd93b5e575418a906ed05bdffd2177&page=${
         this.state.page + 1
-      }`;
+      }&pageSize=${this.props.pageSize}`;
       let data = await fetch(url);
+      this.setState({
+        loading: true,
+      });
       let parseData = await data.json();
       this.setState({
-        page: this.page + 1,
+        page: this.state.page + 1,
         articles: parseData.articles,
+        loading: false,
       });
     }
   };
@@ -53,20 +67,21 @@ export class News extends Component {
     return (
       <div className="container my-3">
         <h2>NewsMonkey top-headline</h2>
-
+        {this.state.loading && <Spinner />}
         <div className="row">
-          {this.state.articles.map((element) => {
-            return (
-              <div className="col-md-4">
-                <NewIteam
-                  title={element.title}
-                  description={element.description}
-                  urlToImage={element.urlToImage}
-                  url={element.url}
-                />
-              </div>
-            );
-          })}
+          {!this.state.loading &&
+            this.state.articles.map((element) => {
+              return (
+                <div className="col-md-4">
+                  <NewIteam
+                    title={element.title}
+                    description={element.description}
+                    urlToImage={element.urlToImage}
+                    url={element.url}
+                  />
+                </div>
+              );
+            })}
         </div>
         <div className="d-flex justify-content-between">
           <button
@@ -78,6 +93,10 @@ export class News extends Component {
             &larr; Previous
           </button>
           <button
+            disabled={
+              this.state.page + 1 >
+              Math.ceil(this.state.totalResults / this.props.pageSize)
+            }
             type="button"
             className="btn btn-dark"
             onClick={this.handleNextClick}
