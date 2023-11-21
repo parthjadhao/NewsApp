@@ -1,16 +1,15 @@
-import React, { Component } from 'react'
-import Navbar from './Component/Navbar';
-import News from './Component/News';
+import React, { Component } from "react";
+import Navbar from "./Component/Navbar";
+import News from "./Component/News";
 
 export default class App extends Component {
   p = "parth";
   render() {
     return (
       <div>
-        <Navbar/>
-        <News pageSize={3}/>
+        <Navbar />
+        <News pageSize={3} country={"us"} category={"health"} />
       </div>
-    )
+    );
   }
 }
-
