@@ -14,13 +14,15 @@ export class News extends Component {
     pageSize: PropTypes.number,
     category: PropTypes.string,
   };
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       articles: [],
       page: 1,
       loading: false,
     };
+    document.title = `${this.props.category}-NewsMonkey`;
+    // document.title = this.props.category;
   }
 
   async newUpdate() {
@@ -52,7 +54,7 @@ export class News extends Component {
     console.log("rendering");
     return (
       <div className="container my-3">
-        <h2>NewsMonkey top-headline</h2>
+        <h2>NewsMonkey top {this.props.category} headline</h2>
         {this.state.loading && <Spinner />}
         <div className="row">
           {!this.state.loading &&
