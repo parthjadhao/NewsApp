@@ -14,7 +14,7 @@ function App() {
             element={
               <News
                 key="general"
-                pageSize={6}
+                pageSize={15}
                 country={"us"}
                 category={"general"}
               />
@@ -26,7 +26,7 @@ function App() {
             element={
               <News
                 key="business"
-                pageSize={6}
+                pageSize={15}
                 country={"us"}
                 category={"business"}
               />
@@ -38,7 +38,7 @@ function App() {
             element={
               <News
                 key="entertainment"
-                pageSize={6}
+                pageSize={15}
                 country={"us"}
                 category={"entertainment"}
               />
@@ -50,7 +50,7 @@ function App() {
             element={
               <News
                 key="general"
-                pageSize={6}
+                pageSize={15}
                 country={"us"}
                 category={"general"}
               />
@@ -62,7 +62,7 @@ function App() {
             element={
               <News
                 key="health"
-                pageSize={6}
+                pageSize={15}
                 country={"us"}
                 category={"health"}
               />
@@ -74,7 +74,7 @@ function App() {
             element={
               <News
                 key="science"
-                pageSize={6}
+                pageSize={15}
                 country={"us"}
                 category={"science"}
               />
@@ -86,7 +86,7 @@ function App() {
             element={
               <News
                 key="sports"
-                pageSize={6}
+                pageSize={15}
                 country={"us"}
                 category={"sports"}
               />
@@ -98,7 +98,7 @@ function App() {
             element={
               <News
                 key="technology"
-                pageSize={6}
+                pageSize={15}
                 country={"us"}
                 category={"technology"}
               />
