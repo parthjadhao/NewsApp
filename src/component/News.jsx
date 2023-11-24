@@ -23,8 +23,8 @@ export class News extends Component {
     };
   }
 
-  async componentDidMount() {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=dcfd93b5e575418a906ed05bdffd2177&page=1&pageSize=${this.props.pageSize}`;
+  async newUpdate() {
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=dcfd93b5e575418a906ed05bdffd2177&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({
       loading: true,
     });
@@ -36,50 +36,17 @@ export class News extends Component {
       loading: false,
     });
   }
+  async componentDidMount() {
+    this.newUpdate();
+  }
 
   handlePrevClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${
-      this.props.country
-    }&category=${
-      this.props.category
-    }&apiKey=dcfd93b5e575418a906ed05bdffd2177&page=${
-      this.state.page - 1
-    }&pageSize=${this.props.pageSize}`;
-    this.setState({
-      loading: true,
-    });
-    let data = await fetch(url);
-    let parseData = await data.json();
-    this.setState({
-      page: this.state.page - 1,
-      articles: parseData.articles,
-      loading: false,
-    });
+    this.setState({ page: this.state.page - 1 });
+    this.newUpdate();
   };
   handleNextClick = async () => {
-    if (
-      this.state.page + 1 >
-      Math.ceil(this.state.totalResults / this.props.pageSize)
-    ) {
-    } else {
-      let url = `https://newsapi.org/v2/top-headlines?country=${
-        this.props.country
-      }&category=${
-        this.props.category
-      }&apiKey=dcfd93b5e575418a906ed05bdffd2177&page=${
-        this.state.page + 1
-      }&pageSize=${this.props.pageSize}`;
-      let data = await fetch(url);
-      this.setState({
-        loading: true,
-      });
-      let parseData = await data.json();
-      this.setState({
-        page: this.state.page + 1,
-        articles: parseData.articles,
-        loading: false,
-      });
-    }
+    this.setState({ page: this.state.page + 1 });
+    this.newUpdate();
   };
   render() {
     console.log("rendering");
