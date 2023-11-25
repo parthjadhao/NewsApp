@@ -38,14 +38,18 @@ export class News extends Component {
     });
   };
   async newUpdate() {
+    this.props.setProgress(30);
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=dcfd93b5e575418a906ed05bdffd2177&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
+    this.props.setProgress(50);
     let parseData = await data.json();
+    this.props.setProgress(80);
     this.setState({
       articles: parseData.articles,
       totalResults: parseData.totalResults,
       loading: false,
     });
+    this.props.setProgress(100);
   }
 
   async componentDidMount() {

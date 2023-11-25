@@ -1,18 +1,28 @@
+import { useState } from "react";
 import Navbar from "./component/Navbar";
 import News from "./component/News";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoadingBar from "react-top-loading-bar";
 
 function App() {
+  const [progress, setProgress] = useState(0);
+
+  const handleSetProgress = (value) => {
+    setProgress(value);
+  };
+
   return (
     <>
       <BrowserRouter>
         <Navbar />
+        <LoadingBar color="#f11946" progress={progress} height={3} />
         <Routes>
           <Route
             exact
             path="/"
             element={
               <News
+                setProgress={handleSetProgress}
                 key="general"
                 pageSize={15}
                 country={"us"}
@@ -25,6 +35,7 @@ function App() {
             path="/business"
             element={
               <News
+                setProgress={handleSetProgress}
                 key="business"
                 pageSize={15}
                 country={"us"}
@@ -37,6 +48,7 @@ function App() {
             path="/entertainment"
             element={
               <News
+                setProgress={handleSetProgress}
                 key="entertainment"
                 pageSize={15}
                 country={"us"}
@@ -49,6 +61,7 @@ function App() {
             path="/general"
             element={
               <News
+                setProgress={handleSetProgress}
                 key="general"
                 pageSize={15}
                 country={"us"}
@@ -61,6 +74,7 @@ function App() {
             path="/health"
             element={
               <News
+                setProgress={handleSetProgress}
                 key="health"
                 pageSize={15}
                 country={"us"}
@@ -73,6 +87,7 @@ function App() {
             path="/science"
             element={
               <News
+                setProgress={handleSetProgress}
                 key="science"
                 pageSize={15}
                 country={"us"}
@@ -85,6 +100,7 @@ function App() {
             path="/sports"
             element={
               <News
+                setProgress={handleSetProgress}
                 key="sports"
                 pageSize={15}
                 country={"us"}
@@ -97,6 +113,7 @@ function App() {
             path="/technology"
             element={
               <News
+                setProgress={handleSetProgress}
                 key="technology"
                 pageSize={15}
                 country={"us"}
