@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
 
 function App() {
+  const apiKey = "dcfd93b5e575418a906ed05bdffd2177"
   const [progress, setProgress] = useState(0);
 
   const handleSetProgress = (value) => {
@@ -27,6 +28,7 @@ function App() {
                 pageSize={15}
                 country={"us"}
                 category={"general"}
+                apikey={apiKey}
               />
             }
           ></Route>
@@ -40,6 +42,7 @@ function App() {
                 pageSize={15}
                 country={"us"}
                 category={"business"}
+                apikey={apiKey}
               />
             }
           ></Route>
@@ -53,6 +56,7 @@ function App() {
                 pageSize={15}
                 country={"us"}
                 category={"entertainment"}
+                apikey={apiKey}
               />
             }
           ></Route>
@@ -66,6 +70,7 @@ function App() {
                 pageSize={15}
                 country={"us"}
                 category={"general"}
+                apikey={apiKey}
               />
             }
           ></Route>
@@ -79,6 +84,7 @@ function App() {
                 pageSize={15}
                 country={"us"}
                 category={"health"}
+                apikey={apiKey}
               />
             }
           ></Route>
@@ -92,6 +98,7 @@ function App() {
                 pageSize={15}
                 country={"us"}
                 category={"science"}
+                apikey={apiKey}
               />
             }
           ></Route>
@@ -105,6 +112,7 @@ function App() {
                 pageSize={15}
                 country={"us"}
                 category={"sports"}
+                apikey={apiKey}
               />
             }
           ></Route>
@@ -118,6 +126,7 @@ function App() {
                 pageSize={15}
                 country={"us"}
                 category={"technology"}
+                apikey={apiKey}
               />
             }
           ></Route>
